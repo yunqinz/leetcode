@@ -1,4 +1,47 @@
- 346.Reverse Vowels of a String
+ Array 
+//----------------------//
+27.Remove Element
+Given an array and a value, remove all instances of that value in place and return the new length.
+Do not allocate extra space for another array, you must do this in place with constant memory.
+The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+Example:
+Given input array nums = [3,2,2,3], val = 3
+Your function should return length = 2, with the first two elements of nums being 2.
+Solution(Two pointer):
+维护两个指针，一个指向需要清除的元素(start 指针) 一个指向需要留下来的元素(i)。
+从头开始扫描 找到第一个需要留下来的元素,第一个需要被替换的元素(start 指向的元素)，用第一个留下来的元素覆盖第一个需要被替换的元素,
+然后两个指针向后移动，再次找到第一个需要留下的元素 和需要被清楚的元素
+Answer:
+public class Solution {
+    public int removeElement(int[] nums, int val) {
+        if(nums == null || nums.length == 0) return 0;
+        int start = 0;
+        for(int i = 0;i < nums.length;i++){
+            if(nums[i] != val){
+                nums[start++] = nums[i];
+            }
+        }
+        return start;
+    }
+}
+--------------------------------------------------------
+26. Remove Duplicates from Sorted Array
+Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.
+
+Do not allocate extra space for another array, you must do this in place with constant memory.
+
+For example,
+Given input array nums = [1,1,2],
+
+Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively. It doesn not matter what you leave beyond the new length.
+Solution:
+Answer:
+
+
+-----------------------
+
+
+346.Reverse Vowels of a String
 ----
 Write a function that takes a string as input and reverse only the vowels of a string.
 Example 1:
@@ -9,6 +52,7 @@ Given s = "leetcode", return "leotcede"
 Solution:
  用两个指针：一个指向String的头部一个指向String的尾部。分别找到头部和尾部第一个碰到的元音字母。然后进行交换。
  如果String 没有遍历完，继续重复上一个步骤，直到String 全部遍历完成。
+<<<<<<< Updated upstream
 
  Answer:
 
@@ -136,3 +180,35 @@ public class Solution {
 Given an array of integers, find out whether there are two distinct indices i and j in the array 
 such that the difference between nums[i] and nums[j] is at most t and the difference between i and j is at most k.
 Solution：
+=======
+ 
+ ----------------------------------------------------
+ 220.Contains Duplicate III
+ Given an array of integers, find out whether there are two distinct indices i and j in the array 
+ such that the difference between nums[i] and nums[j] is at most t and the difference between i and j is at most k.
+
+ Solution:
+ 这道题一眼看上去就知道要对一个滑动窗口为k的数组进行搜索，然后寻找与当前元素相差<t的元素。如果使用暴力搜索的话，时间复杂度为O(Nk),
+ 这个在k特别大的时候会TLE，所以必须对滑动窗口进行处理，理想情况下是组织成一棵树，而且最好是一个平衡二叉树。这样对元素的查找、删除和添加都是LOG(K)时间。
+ 如果用C实现，比较麻烦，所幸Java中有treeset这个类，可以生成一个平衡二叉树而无需考虑实现细节。
+ 代码如下，这里面注意两点：1、leetcode中没有SortedSet，需要自己import，2、在nums[i]+t+1时可能发生溢出，需要将其强制转换为long类型
+
+ TreeSet:它可以给Set集合中的元素进行指定方式的排序。
+        保证元素唯一性的方式：通过比较的结果是否为0.
+        底层数据结构是：二叉树。
+ 
+        排序的第一种方式：
+            让元素自身具备比较性。只要让元素实现Comparable接口，覆盖compareTo方法即可。
+            
+            但是，如果元素自身不具备比较性，或者元素自身具备的比较性，不是所需要的。
+            比如，学生的自然排序是按年龄排序，现在想要按照学生姓名排序。还可以不改动原有代码。
+            这时怎么办呢？
+        排序的第二种方式：自定比较器的方式。
+            这时可以让集合自身具备比较性。
+            可以定义一个类实现Comparator接口，覆盖compare方法。将该Comparator接口子类对象作为实际参数
+            传递给TreeSet集合构造函数。
+            该对象就是比较器。
+ Answer:
+
+
+>>>>>>> Stashed changes
